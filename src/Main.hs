@@ -4,6 +4,7 @@ import Control.Monad
 import Graphics.Gloss.Data.Color as Gloss
 import Graphics.Gloss.Data.Picture as Gloss
 import Graphics.Gloss.Rendering as GlossR
+import qualified Graphics.UI.GLUT as GLUT
 --import Graphics.Rendering.OpenGL as OpenGL hiding (Error)
 import Graphics.UI.GLFW as GLFW
 import System.Exit
@@ -13,6 +14,8 @@ type Position = Point
 
 main :: IO ()
 main = do
+    -- Without line below, program breaks on Ubuntu! :-(
+    (_,_) <- GLUT.getArgsAndInitialize
     setErrorCallback (Just errorCallback)
     initialized <- GLFW.init
     unless (not initialized) $ do
